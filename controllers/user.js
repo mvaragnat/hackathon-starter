@@ -3,7 +3,7 @@ const crypto = require('crypto')
 const nodemailer = require('nodemailer')
 const passport = require('passport')
 const User = require('../models/User')
-const stripe = require('stripe')(process.env.STRIPE_SKEY)
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 /**
  * GET /login
@@ -118,7 +118,7 @@ exports.postSignup = (req, res, next) => {
 exports.getAccount = (req, res) => {
   res.render('account/profile', {
     title: 'Account Management',
-    publishableKey: process.env.STRIPE_PKEY
+    publishableKey: process.env.STRIPE_PUBLIC_KEY
   })
 }
 
