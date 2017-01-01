@@ -3,6 +3,7 @@ const crypto = require('crypto')
 const nodemailer = require('nodemailer')
 const passport = require('passport')
 const User = require('../models/User')
+const stripe = require('stripe')(process.env.STRIPE_SKEY)
 
 /**
  * GET /login
@@ -103,6 +104,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err)
         }
+        user.start_trial()
         res.redirect('/')
       })
     })
@@ -115,7 +117,8 @@ exports.postSignup = (req, res, next) => {
  */
 exports.getAccount = (req, res) => {
   res.render('account/profile', {
-    title: 'Account Management'
+    title: 'Account Management',
+    publishableKey: process.env.STRIPE_PKEY
   })
 }
 
@@ -371,5 +374,27 @@ exports.postForgot = (req, res, next) => {
   ], (err) => {
     if (err) { return next(err) }
     res.redirect('/forgot')
+  })
+}
+
+/*
+* POST /api/stripe
+* Make a payment.
+*/
+exports.postStripe = (req, res) => {
+  const stripeToken = req.body.stripeToken
+  const stripeEmail = req.body.stripeEmail
+  stripe.charges.create({
+    amount: 395,
+    currency: 'usd',
+    source: stripeToken,
+    description: stripeEmail
+  }, (err) => {
+    if (err && err.type === 'StripeCardError') {
+      req.flash('errors', { msg: 'Your card has been declined.' })
+      return res.redirect('/api/stripe')
+    }
+    req.flash('success', { msg: 'Your card has been successfully charged.' })
+    res.redirect('/api/stripe')
   })
 }

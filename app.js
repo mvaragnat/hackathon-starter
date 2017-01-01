@@ -132,6 +132,7 @@ app.post('/account/profile', passportConfig.isAuthenticated, userController.post
 app.post('/account/password', passportConfig.isAuthenticated, userController.postUpdatePassword)
 app.post('/account/delete', passportConfig.isAuthenticated, userController.postDeleteAccount)
 // app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userController.getOauthUnlink);
+app.post('/account/subscribe', userController.postStripe)
 
 /**
  * API examples routes.
@@ -141,8 +142,8 @@ app.post('/account/delete', passportConfig.isAuthenticated, userController.postD
 // app.get('/api/nyt', apiController.getNewYorkTimes);
 // app.get('/api/aviary', apiController.getAviary);
 // app.get('/api/steam', passportConfig.isAuthenticated, passportConfig.isAuthorized, apiController.getSteam);
-app.get('/api/stripe', apiController.getStripe)
-app.post('/api/stripe', apiController.postStripe)
+// app.get('/api/stripe', apiController.getStripe)
+// app.post('/api/stripe', apiController.postStripe)
 // app.get('/api/scraping', apiController.getScraping);
 // app.get('/api/twilio', apiController.getTwilio);
 // app.post('/api/twilio', apiController.postTwilio);
@@ -226,5 +227,7 @@ app.listen(app.get('port'), () => {
   console.log('%s App is running at http://localhost:%d in %s mode', chalk.green('✓'), app.get('port'), app.get('env')) 
   console.log('  Press CTRL-C to stop\n')
 })
+
+require('./config/initializers')()
 
 module.exports = app

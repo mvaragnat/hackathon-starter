@@ -341,34 +341,34 @@ exports.getApi = (req, res) => {
  * GET /api/stripe
  * Stripe API example.
  */
-exports.getStripe = (req, res) => {
-  res.render('api/stripe', {
-    title: 'Stripe API',
-    publishableKey: process.env.STRIPE_PKEY
-  })
-}
+// exports.getStripe = (req, res) => {
+//   res.render('api/stripe', {
+//     title: 'Stripe API',
+//     publishableKey: process.env.STRIPE_PKEY
+//   })
+// }
 
 /**
  * POST /api/stripe
  * Make a payment.
  */
-exports.postStripe = (req, res) => {
-  const stripeToken = req.body.stripeToken
-  const stripeEmail = req.body.stripeEmail
-  stripe.charges.create({
-    amount: 395,
-    currency: 'usd',
-    source: stripeToken,
-    description: stripeEmail
-  }, (err) => {
-    if (err && err.type === 'StripeCardError') {
-      req.flash('errors', { msg: 'Your card has been declined.' })
-      return res.redirect('/api/stripe')
-    }
-    req.flash('success', { msg: 'Your card has been successfully charged.' })
-    res.redirect('/api/stripe')
-  })
-}
+// exports.postStripe = (req, res) => {
+//   const stripeToken = req.body.stripeToken
+//   const stripeEmail = req.body.stripeEmail
+//   stripe.charges.create({
+//     amount: 395,
+//     currency: 'usd',
+//     source: stripeToken,
+//     description: stripeEmail
+//   }, (err) => {
+//     if (err && err.type === 'StripeCardError') {
+//       req.flash('errors', { msg: 'Your card has been declined.' })
+//       return res.redirect('/api/stripe')
+//     }
+//     req.flash('success', { msg: 'Your card has been successfully charged.' })
+//     res.redirect('/api/stripe')
+//   })
+// }
 
 /**
  * GET /api/twilio

@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt-nodejs')
 const crypto = require('crypto')
 const mongoose = require('mongoose')
+var strftime = require('strftime')
 
 const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
@@ -23,8 +24,35 @@ const userSchema = new mongoose.Schema({
     location: String,
     website: String,
     picture: String
-  }
+  },
+
+  // subscription data
+  status: {type: String, default: 'trial'}, // possible status : trial, paying, not_paying
+  stripe_id: String,
+  stripe_subscription_id: String,
+  coupon: String,
+  deadline: Date,
 }, { timestamps: true })
+
+
+/* changes the status to trial, sets the deadline in 2 weeks
+  */
+userSchema.methods.start_trial = function () {
+  var user = this
+  user.status = 'trial'
+  user.deadline = new Date()
+
+  user.deadline.setDate(user.deadline.getDate() + 15)
+
+  user.save(function (err) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      console.log((user.profile.name || user.email) + ': starts trial, deadline ' + strftime('%B %d', user.deadline))
+    }
+  })
+}
 
 /**
  * Password hash middleware.
@@ -64,6 +92,7 @@ userSchema.methods.comparePassword = function comparePassword (candidatePassword
 //   const md5 = crypto.createHash('md5').update(this.email).digest('hex')
 //   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`
 // }
+
 
 const User = mongoose.model('User', userSchema)
 
