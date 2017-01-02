@@ -381,7 +381,7 @@ exports.postForgot = (req, res, next) => {
 * POST /api/stripe
 * Make a payment.
 */
-exports.postStripe = (req, res) => {
+exports.postAccountSubscribe = (req, res) => {
   const stripeToken = req.body.stripeToken
   const stripeEmail = req.body.stripeEmail
   stripe.charges.create({

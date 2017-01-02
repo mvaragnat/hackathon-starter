@@ -1,6 +1,6 @@
 /* eslint-env mocha */
-
-const mongoose = require('mongoose')
+/* eslint-disable brace-style */
+/* eslint-disable camelcase */
 const {expect} = require('chai')
 const sinon = require('sinon')
 require('sinon-mongoose')
@@ -79,10 +79,15 @@ describe('User Model', () => {
       .yields(null, expectedUser)
 
     User.findOne({ email: 'test@gmail.com' }, (err, result) => {
-      userMock.verify()
-      userMock.restore()
-      expect(result.email).to.equal('test@gmail.com')
-      done()
+      if (err) {
+        console.log(err)
+      }
+      else {
+        userMock.verify()
+        userMock.restore()
+        expect(result.email).to.equal('test@gmail.com')
+        done()
+      }
     })
   })
 
@@ -107,3 +112,5 @@ describe('User Model', () => {
   })
 })
 /* eslint-env mocha */
+/* eslint-disable brace-style */
+/* eslint-disable camelcase */

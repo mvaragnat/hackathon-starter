@@ -1,5 +1,6 @@
+/* eslint-disable brace-style */
+/* eslint-disable camelcase */
 const bcrypt = require('bcrypt-nodejs')
-const crypto = require('crypto')
 const mongoose = require('mongoose')
 var strftime = require('strftime')
 
@@ -31,9 +32,8 @@ const userSchema = new mongoose.Schema({
   stripe_id: String,
   stripe_subscription_id: String,
   coupon: String,
-  deadline: Date,
+  deadline: Date
 }, { timestamps: true })
-
 
 /* changes the status to trial, sets the deadline in 2 weeks
   */
@@ -93,7 +93,8 @@ userSchema.methods.comparePassword = function comparePassword (candidatePassword
 //   return `https://gravatar.com/avatar/${md5}?s=${size}&d=retro`
 // }
 
-
 const User = mongoose.model('User', userSchema)
 
 module.exports = User
+/* eslint-disable brace-style */
+/* eslint-disable camelcase */

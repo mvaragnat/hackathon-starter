@@ -1,6 +1,5 @@
 const _ = require('lodash')
 const passport = require('passport')
-const request = require('request')
 // const InstagramStrategy = require('passport-instagram').Strategy;
 const LocalStrategy = require('passport-local').Strategy
 // const FacebookStrategy = require('passport-facebook').Strategy;
