@@ -1,9 +1,13 @@
 extends layout
 
 block content
-  .row
-    .col-sm-6.text-center
-      h1 Main title
-      h3 Subtitle
-    .col-sm-6
-      h2 image
+  // div(style="background: url('/images/background.jpg') bottom center no-repeat; background-size: cover;")
+  .container
+    .row
+      .col-sm-4.text-center
+        .spacer20vh
+        h1 Main title
+        h3 Subtitle
+      .col-sm-8
+        .spacer20vh
+          img.img-gif(src='/images/landing.png')
