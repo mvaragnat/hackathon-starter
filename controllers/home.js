@@ -7,3 +7,9 @@ exports.index = (req, res) => {
     title: 'Home'
   })
 }
+
+exports.pricing = (req, res) => {
+  res.render('pricing', {
+    title: 'Pricing'
+  })
+}

@@ -61,7 +61,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(flash())
 app.use((req, res, next) => {
-  if (req.path === '/api/upload') {
+  if (req.path.match('/api/upload') ||
+      req.path.match(/^\/heroku/) ||
+      req.path.match(/^\/slack/)) {
     next()
   } else {
     lusca.csrf()(req, res, next)
@@ -94,6 +96,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
  */
 require('./routes/static')(app)
 require('./routes/account')(app)
+require('./routes/slack')(app)
 
 /**
  * Error Handler.

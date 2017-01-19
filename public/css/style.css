@@ -1,8 +1,10 @@
 /* Spacer */
 .spacer125 { margin-top: 125px;}
-.spacer10vh { margin-top: 10vh; }
+.spacer80 { margin-top: 80px; }
 .spacer30 { margin-top: 30px; }
 .spacer10 { margin-top: 10px; }
+
+.spacer10vh { margin-top: 10vh; }
 /* Spacer */
 
 /* Text Color */
@@ -116,6 +118,16 @@
 .divbleu {
   background-color: #0190c8;
 }
+
+.smallseparator {
+  text-align: center !important;
+}
+
+.smallseparator:after {
+  content: '';
+  width: 40px;
+  border: 2px solid #444;
+}
 /* Text/Div Background */
 
 /* Text */
@@ -138,7 +150,7 @@ h4,
 h5,
 h6 {
 	color: #444;
-	font-weight: 400;
+	font-weight: 300;
 	line-height: 1.5;
 	margin: 0 0 30px 0;
 	font-family: 'Raleway', sans-serif;
@@ -157,6 +169,17 @@ h3 > span:not(.nocolor),
 h4 > span:not(.nocolor),
 h5 > span:not(.nocolor),
 h6 > span:not(.nocolor) { color: #0191C8; }
+
+.weight500 {
+  font-weight: 500;
+}
+
+.content-block {
+  text-align: justify;
+  padding-left: 10px;
+  color: #999;
+  font-size: 14px;
+}
 /* Text */
 
 /* Image */
@@ -171,6 +194,10 @@ h6 > span:not(.nocolor) { color: #0191C8; }
 /* Layout */
 .main-block {
     height:90vh;
+    width: 100%;
+}
+
+.width100 {
     width: 100%;
 }
 

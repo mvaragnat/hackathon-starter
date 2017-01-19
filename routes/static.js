@@ -8,6 +8,7 @@ const upload = multer({ dest: path.join(__dirname, 'uploads') })
 
 module.exports = function (app) {
   app.get('/', homeController.index)
+    app.get('/pricing', homeController.pricing)
   app.get('/contact', contactController.getContact)
   app.post('/contact', contactController.postContact)
 
