@@ -27,6 +27,20 @@ const userSchema = new mongoose.Schema({
     picture: String
   },
 
+  // for slack
+  slack_team_name: String,
+  slack_team_id: String,
+  slack_champion: {
+    name: String,
+    email: String,
+    user_id: String,
+    access_token_c: String
+  },
+  slack_bot: {
+    user_id: String,
+    bot_token_c: String
+  },
+
   // subscription data
   status: {type: String, default: 'trial'}, // possible status : trial, paying, not_paying
   stripe_id: String,

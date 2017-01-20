@@ -31,6 +31,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
+    "pug": "^2.0.0-beta6",
     "request": "^2.79.0",
     "strftime": "^0.10.0",
     "stripe": "^4.15.0"
